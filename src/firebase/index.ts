@@ -7,4 +7,4 @@ admin.initializeApp({
   databaseURL: `https://${serviceAccount.project_id}.firebaseio.com`,
 });
 
-export default admin;
+export { admin as firebase };

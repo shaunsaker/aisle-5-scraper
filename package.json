@@ -33,7 +33,7 @@
     "build": "tsc -p tsconfig.release.json",
     "start": "node ./build/src/index.js",
     "predev": "cp ./config/firebase/development/service-account.json ./src/firebase/service-account.json",
-    "dev": "ts-node ./src/index.ts",
+    "dev": "ts-node",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
