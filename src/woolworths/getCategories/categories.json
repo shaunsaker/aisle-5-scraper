@@ -2,41 +2,41 @@
   {
     "id": "N-lllnam",
     "displayName": "Fruit, Veg & Salad",
-    "url": "https://www.woolworths.co.za/cat/Food/Fruit-Vegetables-Salads/_/N-lllnam"
+    "pageUrl": "cat/Food/Fruit-Vegetables-Salads/_/N-lllnam"
   },
   {
     "id": "N-d87rb7",
     "displayName": "Meat, Poultry & Fish",
-    "url": "https://www.woolworths.co.za//cat/Food/Meat-Poultry-Fish/_/N-d87rb7"
+    "pageUrl": "/cat/Food/Meat-Poultry-Fish/_/N-d87rb7"
   },
   {
     "id": "N-1bm2new",
     "displayName": "Bread, Bakery & Desserts",
-    "url": "https://www.woolworths.co.za//cat/Food/Bread-Bakery-Desserts/_/N-1bm2new"
+    "pageUrl": "/cat/Food/Bread-Bakery-Desserts/_/N-1bm2new"
   },
   {
     "id": "N-s2csbp",
     "displayName": "Ready Meals",
-    "url": "https://www.woolworths.co.za//cat/Food/Ready-Meals/_/N-s2csbp"
+    "pageUrl": "/cat/Food/Ready-Meals/_/N-s2csbp"
   },
   {
     "id": "N-1sqo44p",
     "displayName": "Dairy, Eggs & Milk",
-    "url": "https://www.woolworths.co.za//cat/Food/Milk-Dairy-Eggs/_/N-1sqo44p"
+    "pageUrl": "/cat/Food/Milk-Dairy-Eggs/_/N-1sqo44p"
   },
   {
     "id": "N-13b8g51",
     "displayName": "Deli & Party Food",
-    "url": "https://www.woolworths.co.za//cat/Food/Deli-Entertaining/_/N-13b8g51"
+    "pageUrl": "/cat/Food/Deli-Entertaining/_/N-13b8g51"
   },
   {
     "id": "N-mnxddc",
     "displayName": "Beverages & Juice",
-    "url": "https://www.woolworths.co.za//cat/Food/Beverages-Juices/_/N-mnxddc"
+    "pageUrl": "/cat/Food/Beverages-Juices/_/N-mnxddc"
   },
   {
     "id": "N-1z13rv1",
     "displayName": "Flowers & Plants",
-    "url": "https://www.woolworths.co.za//cat/Food/Flowers-Plants/_/N-1z13rv1"
+    "pageUrl": "/cat/Food/Flowers-Plants/_/N-1z13rv1"
   }
 ]
