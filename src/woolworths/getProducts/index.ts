@@ -30,7 +30,7 @@ const getProducts = async () => {
     require('../getCategories/categories.json').slice(0, 1); //await getShopCategories(ShopIds.Woolworths);
 
   for (const category of categories) {
-    const productCount = 60;
+    const productCount = 0;
 
     await scrapeAndSaveProducts(category.pageUrl, productCount);
   }
