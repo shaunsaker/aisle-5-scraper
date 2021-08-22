@@ -45,7 +45,6 @@ export const getQuantityUnitFromScrapedDisplayName = (
 
 export const parseProducts = (scrapedProducts: ScrapedProduct[]): Product[] => {
   return scrapedProducts.map((scrapedProduct) => {
-    console.log({ scrapedProduct });
     const scrapedDisplayName =
       scrapedProduct.displayName || scrapedProduct.altDisplayName;
     const displayName =
