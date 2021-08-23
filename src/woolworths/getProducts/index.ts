@@ -5,8 +5,11 @@ import { woolworthsBaseUrl } from '../models';
 import { parseProducts } from './parseProducts';
 import { scrapeProducts } from './scrapeProducts';
 
-const scrapeAndSaveProducts = async (pageUrl: string, productCount: number) => {
-  let url = `${woolworthsBaseUrl}/${pageUrl}?No=${productCount}`;
+const scrapeAndSaveProducts = async (
+  category: ShopCategory,
+  productCount: number,
+) => {
+  let url = `${woolworthsBaseUrl}/${category.pageUrl}?No=${productCount}`;
 
   if (productCount > 0) {
     url += `&Nrpp=${productCount}`;
@@ -14,7 +17,7 @@ const scrapeAndSaveProducts = async (pageUrl: string, productCount: number) => {
 
   const scrapedProducts = await scrapeProducts(url);
 
-  const products = parseProducts(scrapedProducts);
+  const products = parseProducts(scrapedProducts, category.id);
 
   await saveProducts(products);
 
@@ -22,7 +25,7 @@ const scrapeAndSaveProducts = async (pageUrl: string, productCount: number) => {
   if (products.length) {
     productCount += 60;
 
-    await scrapeAndSaveProducts(pageUrl, productCount);
+    await scrapeAndSaveProducts(category, productCount);
   }
 };
 
@@ -34,7 +37,7 @@ const getProducts = async () => {
   for (const category of categories) {
     const productCount = 0;
 
-    await scrapeAndSaveProducts(category.pageUrl, productCount);
+    await scrapeAndSaveProducts(category, productCount);
   }
 };
 

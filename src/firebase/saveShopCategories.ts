@@ -6,6 +6,6 @@ export const saveShopCategories = async (
   categories: ShopCategory[],
 ): Promise<void> => {
   for (const category of categories) {
-    await db.shopCategories(shopId).doc(category.displayName).set(category);
+    await db.shopCategories(shopId).doc(category.id).set(category);
   }
 };

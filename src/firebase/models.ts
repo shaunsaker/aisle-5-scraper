@@ -1,5 +1,7 @@
+export type CategoryId = string;
+
 export interface Category {
-  id: string;
+  id: CategoryId;
   displayName: string;
 }
 
@@ -13,6 +15,7 @@ export interface Product {
   price: number;
   quantityValue: number;
   quantityUnit: string;
+  categoryId: CategoryId;
 }
 
 export enum ShopIds {
