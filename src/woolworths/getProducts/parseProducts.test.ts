@@ -11,6 +11,14 @@ describe('parseProducts', () => {
         getDisplayNameFromScrapedDisplayName('Large Bananas 950 g'),
       ).toEqual('Large Bananas');
     });
+
+    it('returns the correct display name for Appletiser 100 % Sparkling Apple Juice 6 x 275 ml', () => {
+      expect(
+        getDisplayNameFromScrapedDisplayName(
+          'Appletiser 100 % Sparkling Apple Juice 6 x 275 ml',
+        ),
+      ).toEqual('Appletiser 100 % Sparkling Apple Juice');
+    });
   });
 
   describe('getQuantityValueFromScrapedDisplayName', () => {
@@ -33,6 +41,30 @@ describe('parseProducts', () => {
         ),
       ).toEqual(475);
     });
+
+    it('returns the correct value for Still Natural Spring Water 4 x 5 L', () => {
+      expect(
+        getQuantityValueFromScrapedDisplayName(
+          'Still Natural Spring Water 4 x 5 L',
+        ),
+      ).toEqual(20);
+    });
+
+    it('returns the correct value for 100% Fruit Cocktail Juice Blend 3 L', () => {
+      expect(
+        getQuantityValueFromScrapedDisplayName(
+          '100% Fruit Cocktail Juice Blend 3 L',
+        ),
+      ).toEqual(3);
+    });
+
+    it('returns the correct value for Appletiser 100 % Sparkling Apple Juice 6 x 275 ml', () => {
+      expect(
+        getQuantityValueFromScrapedDisplayName(
+          'Appletiser 100 % Sparkling Apple Juice 6 x 275 ml',
+        ),
+      ).toEqual(1650);
+    });
   });
 
   describe('getQuantityUnitFromScrapedDisplayName', () => {
@@ -45,7 +77,23 @@ describe('parseProducts', () => {
     it('returns the correct value for Iceberg Lettuce Head', () => {
       expect(
         getQuantityUnitFromScrapedDisplayName('Iceberg Lettuce Head'),
-      ).toEqual('pk');
+      ).toEqual('unit');
+    });
+
+    it('returns the correct value for Still Natural Spring Water 4 x 5 L', () => {
+      expect(
+        getQuantityUnitFromScrapedDisplayName(
+          'Still Natural Spring Water 4 x 5 L',
+        ),
+      ).toEqual('L');
+    });
+
+    it('returns the correct value for 100% Fruit Cocktail Juice Blend 3 L', () => {
+      expect(
+        getQuantityUnitFromScrapedDisplayName(
+          '100% Fruit Cocktail Juice Blend 3 L',
+        ),
+      ).toEqual('L');
     });
   });
 });

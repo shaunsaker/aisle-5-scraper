@@ -1,46 +1,60 @@
 import { Product } from '../../firebase/models';
 import { ScrapedProduct } from './models';
 
-const splitOnDigitRegex = / (?=\d+)/;
+const quantityRegex =
+  /(\d*| \d*| \d* (g|kg|ml|l|pk))( )(-|x|\d*| )(\d*| )(\d*|\.)(\d*) (g|kg|ml|l|pk)$/i;
+
+const isQuantityMultiple = (str: string): boolean => /\d\sx\s\d/.test(str);
+
+const isQuantityRange = (str: string): boolean => / - /.test(str);
 
 export const getDisplayNameFromScrapedDisplayName = (
   scrapedDisplayName: string,
-): string => scrapedDisplayName.split(splitOnDigitRegex)[0];
+): string => scrapedDisplayName.replace(quantityRegex, '');
 
 export const getQuantityValueFromScrapedDisplayName = (
   scrapedDisplayName: string,
 ): number => {
-  const stringParts = scrapedDisplayName.split(splitOnDigitRegex);
+  const match = scrapedDisplayName.match(quantityRegex);
 
-  const isQuantityRange = stringParts.length > 2;
-  if (isQuantityRange) {
-    // calculate the average weight between the range
-    const rangeFrom = parseInt(stringParts[1].split(' ')[0]);
-    const rangeTo = parseInt(stringParts[2].split(' ')[0]);
-    const average = rangeFrom + (rangeTo - rangeFrom) / 2;
+  if (!match) {
+    return 1;
+  }
+
+  const quantityPart = match[0].trim();
+  const unit = getQuantityUnitFromScrapedDisplayName(scrapedDisplayName);
+
+  if (isQuantityMultiple(quantityPart)) {
+    const [amount, quantity] = quantityPart
+      .split(` ${unit}`)
+      .join('')
+      .split(' x ');
+    const total = parseInt(amount) * parseInt(quantity);
+
+    return total;
+  }
+
+  if (isQuantityRange(quantityPart)) {
+    const [rangeFrom, rangeTo] = quantityPart
+      .split(` ${unit}`)
+      .join('')
+      .split(' - ');
+    const average =
+      (parseInt(rangeTo) - parseInt(rangeFrom)) / 2 + parseInt(rangeFrom);
 
     return average;
   }
 
-  const isSingleUnit = stringParts.length === 1;
-  if (isSingleUnit) {
-    return 1;
-  }
-
-  return parseInt(stringParts[1]);
+  return parseInt(quantityPart.split(` ${unit}`).join(''));
 };
 
 export const getQuantityUnitFromScrapedDisplayName = (
   scrapedDisplayName: string,
 ): string => {
-  const stringParts = scrapedDisplayName.split(splitOnDigitRegex);
+  const match = scrapedDisplayName.match(/(g|kg|ml|l|pk)$/i); // assumes unit is at the end of the line
+  const unit = match ? match[0] : 'unit';
 
-  const isSingleUnit = stringParts.length === 1;
-  if (isSingleUnit) {
-    return 'pk';
-  }
-
-  return stringParts[1]?.split(' ')[1];
+  return unit;
 };
 
 export const parseProducts = (scrapedProducts: ScrapedProduct[]): Product[] => {
@@ -58,10 +72,8 @@ export const parseProducts = (scrapedProducts: ScrapedProduct[]): Product[] => {
       id: scrapedProduct.id,
       displayName,
       price: scrapedProduct.price,
-      quantity: {
-        value: quantityValue,
-        unit: quantityUnit,
-      },
+      quantityValue,
+      quantityUnit,
     };
   });
 };

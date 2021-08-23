@@ -23,6 +23,6 @@ export const saveProducts = async (products: Product[]): Promise<void> => {
     await db
       .shopProducts(ShopIds.Woolworths)
       .doc(parsedProduct.id)
-      .set(parsedProduct, { merge: true });
+      .set(parsedProduct, { merge: false }); // TODO: make true when ready
   }
 };

@@ -8,10 +8,8 @@ export interface Product {
   id: string;
   displayName: string;
   price: number;
-  quantity: {
-    value: number;
-    unit: string;
-  };
+  quantityValue: number;
+  quantityUnit: string;
 }
 
 export enum ShopIds {
