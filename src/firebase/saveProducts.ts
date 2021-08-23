@@ -18,7 +18,9 @@ export const saveProducts = async (products: Product[]): Promise<void> => {
     // don't update the product if a field is empty, e.g. "Iceberg Lettuce" should not be allowed to become ""
     const parsedProduct = deleteEmptyKeys(product);
 
-    console.log(`Saving product with id, ${product.id}...`);
+    console.log(
+      `Saving product with id: ${product.id}, displayName: ${product.displayName}, price: ${product.price}, quantityValue: ${product.quantityValue} and quantityUnit: ${product.quantityUnit}...`,
+    );
 
     await db
       .shopProducts(ShopIds.Woolworths)
