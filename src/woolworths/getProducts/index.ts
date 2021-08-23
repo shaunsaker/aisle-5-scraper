@@ -1,6 +1,6 @@
 import { getShopCategories } from '../../firebase/getShopCategories';
 import { ShopCategory, ShopIds } from '../../firebase/models';
-import { saveProducts } from '../../firebase/saveProducts';
+import { saveShopProducts } from '../../firebase/saveShopProducts';
 import { woolworthsBaseUrl } from '../models';
 import { parseProducts } from './parseProducts';
 import { scrapeProducts } from './scrapeProducts';
@@ -19,7 +19,7 @@ const scrapeAndSaveProducts = async (
 
   const products = parseProducts(scrapedProducts, category.id);
 
-  await saveProducts(products);
+  await saveShopProducts(products);
 
   // pageinate, rinse and repeat
   if (products.length) {

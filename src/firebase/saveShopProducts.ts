@@ -13,7 +13,7 @@ const deleteEmptyKeys = <T>(obj: T): Partial<T> => {
   return newObject;
 };
 
-export const saveProducts = async (products: Product[]): Promise<void> => {
+export const saveShopProducts = async (products: Product[]): Promise<void> => {
   for (const product of products) {
     // don't update the product if a field is empty, e.g. "Iceberg Lettuce" should not be allowed to become ""
     const parsedProduct = deleteEmptyKeys(product);
