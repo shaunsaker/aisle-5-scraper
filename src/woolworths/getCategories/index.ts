@@ -1,16 +1,7 @@
-import { db } from '../../firebase/db';
-import { Category, ShopIds } from '../../firebase/models';
+import { ShopCategory, ShopIds } from '../../firebase/models';
+import { saveShopCategories } from '../../firebase/saveShopCategories';
 
 // manually get the food categories and save them to firestore
-const categories: Category[] = require('./categories.json');
+const categories: ShopCategory[] = require('./categories.json');
 
-const saveCategories = async (categories: Category[]) => {
-  for (const category of categories) {
-    await db
-      .shopCategories(ShopIds.Woolworths)
-      .doc(category.displayName)
-      .set(category);
-  }
-};
-
-saveCategories(categories);
+saveShopCategories(ShopIds.Woolworths, categories);

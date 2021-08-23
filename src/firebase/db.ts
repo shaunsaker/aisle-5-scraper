@@ -1,5 +1,5 @@
 import { firebase } from '.';
-import { Category, Product, ShopIds } from './models';
+import { Product, ShopCategory, ShopIds } from './models';
 
 // taken and modified from https://www.thetechplatform.com/post/using-firestore-with-typescript
 const converter = <T>() => ({
@@ -13,7 +13,7 @@ const dataPoint = <T>(collectionPath: string) =>
 
 const db = {
   shopCategories: (shopId: ShopIds) =>
-    dataPoint<Category>(`shops/${shopId}/categories`),
+    dataPoint<ShopCategory>(`shops/${shopId}/categories`),
   shopProducts: (shopId: ShopIds) =>
     dataPoint<Product>(`shops/${shopId}/products`),
 };

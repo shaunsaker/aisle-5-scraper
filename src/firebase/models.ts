@@ -1,4 +1,4 @@
-export interface Category {
+export interface ShopCategory {
   id: string;
   displayName: string;
   pageUrl: string;
