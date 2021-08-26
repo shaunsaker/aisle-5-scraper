@@ -31,3 +31,5 @@ dist/
 # Private
 tools
 src/firebase/service-account.json
+products.json
+woolworthsProducts.json

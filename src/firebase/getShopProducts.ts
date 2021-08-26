@@ -1,7 +1,9 @@
 import { db } from './db';
-import { Product, ShopIds } from './models';
+import { ShopProduct, ShopIds } from './models';
 
-export const getShopProducts = async (shopId: ShopIds): Promise<Product[]> =>
+export const getShopProducts = async (
+  shopId: ShopIds,
+): Promise<ShopProduct[]> =>
   (await (await db.shopProducts(shopId)).get()).docs.map((document) =>
     document.data(),
   );

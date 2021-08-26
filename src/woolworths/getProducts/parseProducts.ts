@@ -1,4 +1,4 @@
-import { CategoryId, Product } from '../../firebase/models';
+import { CategoryId, ShopProduct } from '../../firebase/models';
 import { ScrapedProduct } from './models';
 
 const quantityRegex =
@@ -60,7 +60,7 @@ export const getQuantityUnitFromScrapedDisplayName = (
 export const parseProducts = (
   scrapedProducts: ScrapedProduct[],
   categoryId: CategoryId,
-): Product[] => {
+): ShopProduct[] => {
   return scrapedProducts.map((scrapedProduct) => {
     const scrapedDisplayName =
       scrapedProduct.displayName || scrapedProduct.altDisplayName;

@@ -9,8 +9,10 @@ export interface ShopCategory extends Category {
   pageUrl: string;
 }
 
-export interface Product {
-  id: string;
+export type ShopProductId = string;
+
+export interface ShopProduct {
+  id: ShopProductId;
   displayName: string;
   price: number;
   quantityValue: number;
@@ -20,4 +22,11 @@ export interface Product {
 
 export enum ShopIds {
   Woolworths = 'woolworths',
+}
+
+export interface Product {
+  id: string;
+  displayName: string;
+  categoryId: string;
+  woolworthsProductIds: ShopProductId[];
 }

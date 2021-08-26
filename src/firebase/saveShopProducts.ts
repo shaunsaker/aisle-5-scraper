@@ -1,19 +1,10 @@
+import { deleteEmptyKeys } from '../utils/deleteEmptyKeys';
 import { db } from './db';
-import { Product, ShopIds } from './models';
+import { ShopProduct, ShopIds } from './models';
 
-const deleteEmptyKeys = <T>(obj: T): Partial<T> => {
-  const newObject: Partial<T> = obj;
-
-  Object.keys(obj).forEach((key) => {
-    if (!obj[key]) {
-      delete newObject[key];
-    }
-  });
-
-  return newObject;
-};
-
-export const saveShopProducts = async (products: Product[]): Promise<void> => {
+export const saveShopProducts = async (
+  products: ShopProduct[],
+): Promise<void> => {
   for (const product of products) {
     // don't update the product if a field is empty, e.g. "Iceberg Lettuce" should not be allowed to become ""
     const parsedProduct = deleteEmptyKeys(product);
