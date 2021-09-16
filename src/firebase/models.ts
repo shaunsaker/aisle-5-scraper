@@ -24,9 +24,17 @@ export enum ShopIds {
   Woolworths = 'woolworths',
 }
 
+export enum Unit {
+  unit = 'unit',
+  pk = 'pk',
+  kg = 'kg',
+  lt = 'lt',
+}
+
 export interface Product {
   id: string;
   displayName: string;
   categoryId: string;
+  unit: Unit;
   woolworthsProductIds: ShopProductId[];
 }

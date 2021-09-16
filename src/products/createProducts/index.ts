@@ -2,10 +2,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { getShopProducts } from '../../firebase/getShopProducts';
-import { ShopProduct, ShopIds, Product } from '../../firebase/models';
+import { ShopProduct, ShopIds, Product, Unit } from '../../firebase/models';
 import { getUuid } from '../../utils/getUuid';
 import { getPrompt } from '../../utils/getPrompt';
 import { toTitleCase } from '../../utils/toTitleCase';
+import { saveProducts } from '../../firebase/saveProducts';
 
 const LOCAL_PRODUCTS_FILENAME = './products.json';
 
@@ -16,6 +17,29 @@ const writeProducts = (products: Product[]) => {
     path.join(__dirname, LOCAL_PRODUCTS_FILENAME),
     JSON.stringify(products, null, tabIndent),
   );
+};
+
+const getProductUnitFromShopProduct = (shopProduct: ShopProduct): Unit => {
+  const shopProductUnit = shopProduct.quantityUnit.toLowerCase();
+
+  if (shopProductUnit === 'unit') {
+    return Unit.unit;
+  }
+
+  if (shopProductUnit === 'pk') {
+    return Unit.pk;
+  }
+
+  if (shopProductUnit === 'g' || shopProductUnit === 'kg') {
+    return Unit.kg;
+  }
+
+  if (shopProductUnit === 'ml' || shopProductUnit === 'l') {
+    return Unit.lt;
+  }
+
+  console.log('NO UNIT FOR', shopProduct);
+  return Unit.unit;
 };
 
 const createOrUpdateProduct = async (
@@ -49,8 +73,9 @@ const createOrUpdateProduct = async (
     // create a new product
     newOrUpdatedProduct = {
       id: getUuid(),
-      displayName: displayName, // FIXME: should we clean this string up? ie. we don't want a display name of "gem squasH"
-      categoryId: shopProduct.categoryId, // FIXME: this won't work for other shops
+      displayName,
+      categoryId: shopProduct.categoryId, // FIXME: this won't work for other shops because we're using the Woolworths categories for our own categories
+      unit: getProductUnitFromShopProduct(shopProduct),
       woolworthsProductIds: [shopProduct.id],
     };
   }
@@ -83,7 +108,9 @@ const createProducts = async () => {
   writeProducts(products);
 
   // get the shop products
-  const woolworthsProducts: ShopProduct[] = require('./woolworthsProducts.json'); // TODO: await getShopProducts(ShopIds.Woolworths);
+  const woolworthsProducts: ShopProduct[] = await getShopProducts(
+    ShopIds.Woolworths,
+  );
 
   console.log(
     'Please enter a normalised name for the product or leave it blank if the name is normalised already...',
@@ -116,6 +143,9 @@ const createProducts = async () => {
       process.exit(1);
     }
   }
+
+  // save the products to firebase
+  await saveProducts(products);
 };
 
 createProducts();
