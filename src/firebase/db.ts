@@ -5,6 +5,7 @@ import {
   ShopCategory,
   ShopIds,
   Product,
+  DeliveryRegion,
 } from './models';
 
 // taken and modified from https://www.thetechplatform.com/post/using-firestore-with-typescript
@@ -22,6 +23,8 @@ const db = {
     dataPoint<ShopCategory>(`shops/${shopId}/categories`),
   shopProducts: (shopId: ShopIds) =>
     dataPoint<ShopProduct>(`shops/${shopId}/products`),
+  shopDeliveryRegions: (shopId: ShopIds) =>
+    dataPoint<DeliveryRegion>(`shops/${shopId}/deliveryRegions`),
   categories: dataPoint<Category>('categories'),
   products: dataPoint<Product>('products'),
 };

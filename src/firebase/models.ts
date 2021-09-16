@@ -38,3 +38,8 @@ export interface Product {
   unit: Unit;
   woolworthsProductIds: ShopProductId[];
 }
+
+export interface DeliveryRegion {
+  id: string;
+  displayName: string;
+}

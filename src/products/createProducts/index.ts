@@ -8,7 +8,7 @@ import { getPrompt } from '../../utils/getPrompt';
 import { toTitleCase } from '../../utils/toTitleCase';
 import { saveProducts } from '../../firebase/saveProducts';
 
-const LOCAL_PRODUCTS_FILENAME = './products.json';
+const LOCAL_PRODUCTS_FILENAME = './products.data.json';
 
 const writeProducts = (products: Product[]) => {
   const tabIndent = 2;
