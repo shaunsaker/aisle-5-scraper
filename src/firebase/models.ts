@@ -41,7 +41,7 @@ export interface Product {
 
 type ShopRegionId = string;
 
-export interface ShopDeliveryRegion {
+export interface ShopRegion {
   id: ShopRegionId;
   displayName: string;
 }

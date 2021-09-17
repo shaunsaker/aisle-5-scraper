@@ -5,7 +5,7 @@ import {
   ShopCategory,
   ShopIds,
   Product,
-  ShopDeliveryRegion,
+  ShopRegion,
   ShopSuburb,
 } from './models';
 
@@ -24,8 +24,8 @@ const db = {
     dataPoint<ShopCategory>(`shops/${shopId}/categories`),
   shopProducts: (shopId: ShopIds) =>
     dataPoint<ShopProduct>(`shops/${shopId}/products`),
-  shopDeliveryRegions: (shopId: ShopIds) =>
-    dataPoint<ShopDeliveryRegion>(`shops/${shopId}/deliveryRegions`),
+  shopRegions: (shopId: ShopIds) =>
+    dataPoint<ShopRegion>(`shops/${shopId}/regions`),
   shopSuburbs: (shopId: ShopIds) =>
     dataPoint<ShopSuburb>(`shops/${shopId}/suburbs`),
   categories: dataPoint<Category>('categories'),
