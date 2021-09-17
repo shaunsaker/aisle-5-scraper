@@ -39,7 +39,16 @@ export interface Product {
   woolworthsProductIds: ShopProductId[];
 }
 
-export interface DeliveryRegion {
-  id: string;
+type ShopRegionId = string;
+
+export interface ShopDeliveryRegion {
+  id: ShopRegionId;
   displayName: string;
+}
+
+export interface ShopSuburb {
+  id: string;
+  regionId: ShopRegionId;
+  displayName: string;
+  postalCode: string;
 }
