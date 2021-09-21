@@ -52,3 +52,11 @@ export interface ShopSuburb {
   displayName: string;
   postalCode: string;
 }
+
+type ProvinceId = string;
+
+export interface Province {
+  id: ProvinceId;
+  displayName: string;
+  woolworthsRegionId: ShopRegionId;
+}
