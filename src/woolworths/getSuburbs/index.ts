@@ -3,10 +3,12 @@ import { saveShopSuburbs } from '../../firebase/saveShopSuburbs';
 
 // manually get the suburbs and save them to firestore
 // FIXME: we should parse this to ensure the types are correct
-const suburbsData: {
+export type SuburbsData = {
   suburbs: { postalCode: string; name: string; id: string }[];
   id: string;
-}[] = require('./suburbs.data.json');
+}[];
+
+const suburbsData: SuburbsData = require('./suburbs.data.json');
 
 const suburbs: ShopSuburb[] = [];
 

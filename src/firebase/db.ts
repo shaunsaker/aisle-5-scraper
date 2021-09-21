@@ -8,6 +8,7 @@ import {
   ShopRegion,
   ShopSuburb,
   Province,
+  Suburb,
 } from './models';
 
 // taken and modified from https://www.thetechplatform.com/post/using-firestore-with-typescript
@@ -32,6 +33,7 @@ const db = {
   categories: dataPoint<Category>('categories'),
   products: dataPoint<Product>('products'),
   provinces: dataPoint<Province>('provinces'),
+  suburbs: dataPoint<Suburb>('suburbs'),
 };
 
 export { db };
